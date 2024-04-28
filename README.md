@@ -12,7 +12,8 @@ Due to various issues (probably my environment) I decided to use SAM instead of 
 Personally, I prefer CDK, but...
 
 > ![IMPORTANT]
-> Do not endorse driving the entire web application with Lambda. For SPA apps like this example, there are other relatively easy methods, such as static hosting on S3.
+> Do not endorse driving the entire web application with Lambda. For SPA apps like this example, 
+> there are other relatively easy methods, such as static hosting on S3.
 
 
 
