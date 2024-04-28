@@ -1,0 +1,22 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  border-color: #cecccc;
+  border-width: 1px;
+  border-style: solid;
+  padding: 2rem;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+ul li {
+  width: 100px;
+  text-align: center;
+}

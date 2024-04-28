@@ -38,7 +38,7 @@ This is a simple web server that can be used to run AWS Lambda functions locally
 └── template.yml
 ```
 
-- `src` - Contains the source code for the Lambda function
+- `app` - Contains the source code for the Lambda function
 - `template.yaml` - Contains the SAM template for the Lambda function
 - `Dockerfile` - Contains the Dockerfile for the Lambda function
 - `docker-compose.yml` - Contains the Docker Compose file for the Lambda function
