@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  serverless-nginx-demo
+
+  Sample SAM Template for serverless-nginx-demo
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 29
+
+Resources:
+  MyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      Architectures:
+        - arm64
+      MemorySize: 512
+      Policies:
+        - CloudWatchLambdaInsightsExecutionRolePolicy # Add IAM Permission for Lambda Insight Extension
+      Environment:
+        Variables:
+          RUST_LOG: debug
+          PORT: 8080
+      Events:
+        Root:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY
+        Petstore:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+    Metadata:
+      DockerTag: latest
+      DockerContext: .
+      Dockerfile: Dockerfile
+
+Outputs:
+  URL:
+    Description: "API Gateway endpoint URL for Prod stage for Nginx application"
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/"
+  MyFunction:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt MyFunction.Arn
+  MyFunctionRole:
+    Description: "Implicit IAM Role created for function"
+    Value: !GetAtt MyFunctionRole.Arn
