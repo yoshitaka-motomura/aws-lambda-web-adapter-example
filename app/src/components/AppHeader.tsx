@@ -1,12 +1,15 @@
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Logo from './LogoSvg'
+
 export default function Appheader() {
     return (
       <div className='bg-gray-800 text-white p-4 sticky top-0'>
         <header className="relative flex w-full flex-nowrap items-center justify-between px-3">
-        <div>
-            <h1 className='text-2xl'>
-                AWS Lambda Web Adapter
+        <div className="inline-flex justify-center items-center">
+            <Logo className="w-8 h-auto mr-2 fill-white" />
+            <h1 className='text-3xl poppins-light'>
+               cristallum.io
             </h1>
         </div>
         <nav className="text-xl">
