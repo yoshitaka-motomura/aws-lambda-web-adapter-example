@@ -23,7 +23,7 @@ Resources:
       Environment:
         Variables:
           RUST_LOG: debug
-          PORT: 8080
+          PORT: '8080'
       Events:
         Root:
           Type: HttpApi
@@ -39,7 +39,6 @@ Resources:
       DockerTag: latest
       DockerContext: .
       Dockerfile: Dockerfile
-
 Outputs:
   URL:
     Description: "API Gateway endpoint URL for Prod stage for Nginx application"
