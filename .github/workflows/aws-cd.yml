@@ -1,0 +1,38 @@
+name: AWS CDK deployment
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  cdk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ASSUME }}
+          role-session-name: action-session
+          aws-region: ap-northeast-1
+      - name: Nodejs setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy
+        run: npm run cdk deploy

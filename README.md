@@ -1,5 +1,8 @@
-# Lambda Web Adapter　Example using SAM CLI
-This is a simple web server that can be used to run AWS Lambda functions locally. It is designed to work with the AWS SAM CLI.
+# Lambda Web Adapter　using SAM CLI & AWS CDK Example
+
+## Introduction
+**this is a simple example of deploying a Docker image using Lambda Web Adapter**
+**Contains examples of cdk and sam deployment.**
 
 ## Overview
 
@@ -15,10 +18,15 @@ Personally, I prefer CDK, but...
 > Do not endorse driving the entire web application with Lambda. For SPA apps like this example, 
 > there are other relatively easy methods, such as static hosting on S3.
 
+Apple slicon CPU Arct cdk deploy failed
 
+> ![WARNING]
+> For Apple Silicon architectures, CDK deployment fails in the local environment. My error was that I couldn't push the image to ECR, 
+> but I found that it works fine when pushing from Github Actions.
+> See is .github/workflows directory
 
-## Directory Structure
-
+## SAM CLI Version
+### Directory Structure
 ```
 .
 ├── Dockerfile
@@ -59,53 +67,17 @@ Personally, I prefer CDK, but...
 - `docker-compose.yml` - Contains the Docker Compose file for the Lambda function
 - `nginx` - Contains the Nginx configuration files
 - `samconfig.toml` - Contains the SAM configuration for the Lambda function
+
+### Commands
+- `sam deploy --guided` - Deploys the Lambda function (**If samconfig.toml exists, the `--guided` option is not required.**) 
+- `sam delete` - Deletes the Lambda function
+- Other commands are check the [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 ---
-**CDK Stack Example**
-```
-import * as cdk from "aws-cdk-lib";
-import { Construct } from "constructs";
-import { Duration } from "aws-cdk-lib";
-import { DockerImageCode, DockerImageFunction } from "aws-cdk-lib/aws-lambda";
-import { HttpApi } from "aws-cdk-lib/aws-apigatewayv2";
-import { Platform } from "aws-cdk-lib/aws-ecr-assets";
-import { HttpLambdaIntegration } from "aws-cdk-lib/aws-apigatewayv2-integrations";
 
-export class ExampleStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
+## CDK Version
 
-    const lambdaFunc = new DockerImageFunction(this, "DockerImageFunc", {
-      code: DockerImageCode.fromImageAsset("./", {
-        platform: Platform.LINUX_AMD64,
-        exclude: [
-          "cdk.out",
-          "cdk.context.json",
-          "lib",
-          "bin",
-          "node_modeules",
-          "test",
-        ],
-      }),
-      memorySize: 512,
-      timeout: Duration.seconds(30),
-    });
 
-    const lambdaIntegration = new HttpLambdaIntegration(
-      "LambdaIntegration",
-      lambdaFunc
-    );
 
-    const httpApi = new HttpApi(this, "HttpApi", {
-      defaultIntegration: lambdaIntegration,
-    });
-
-    new cdk.CfnOutput(this, "HttpApiUrl", {
-      value: httpApi.url!,
-    });
-  }
-}
-
-```
 
 ## Requirements
 - [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
