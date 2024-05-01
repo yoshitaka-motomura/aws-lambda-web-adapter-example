@@ -75,8 +75,46 @@ Apple slicon CPU Arct cdk deploy failed
 ---
 
 ## CDK Version
+[Example Page](https://orion.cristallum.io/)
+*The domain is set from the console, but please set the domain you own.*
 
+```
+.
+├── Dockerfile
+├── README.md
+├── app
+│   ├── README.md
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public
+│   ├── src
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+├── bin
+│   └── cdk.ts
+├── cdk.json
+├── docker-compose.yml
+├── jest.config.js
+├── lib
+│   └── lambda-web-adapter-example-app-stack.ts
+├── nginx
+│   ├── conf.d
+│   └── nginx.conf
+├── package-lock.json
+├── package.json
+├── samconfig.toml
+├── template.yml
+└── test
+    └── cdk.test.ts
 
+```
+- `app` - Contains the source code for the Lambda function
+- `lib` - Contains the CDK stack for the Lambda function
+- `bin` - Contains the CDK entry point
 
 
 ## Requirements
