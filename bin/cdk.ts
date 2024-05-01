@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
-import { AppStack } from "../lib/app-stack";
+import { LambdaWebAdapterExampleAppStack } from "../lib/lambda-web-adapter-example-app-stack";
 
 const app = new cdk.App();
-new AppStack(app, "CdkStack", {
+new LambdaWebAdapterExampleAppStack(app, "LambdaWebAdapterExample", {
   env: {
     region: "ap-northeast-1",
   },
