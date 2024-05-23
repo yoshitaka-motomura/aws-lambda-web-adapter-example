@@ -11,8 +11,6 @@ COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt
 WORKDIR /var/www/html
 COPY --from=build /app/dist .
 
-RUN chown -R nginx:nginx /var/www/html && chmod -R 755 /var/www/html
-
 COPY ./nginx/nginx.conf /opt/nginx/conf/nginx.conf
 COPY ./nginx/conf.d/default.conf /opt/nginx/conf/conf.d/default.conf
 
