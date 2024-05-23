@@ -1,5 +1,5 @@
 FROM public.ecr.aws/lambda/nodejs:20 as build
-#FROM node:lts-slim as build
+
 WORKDIR /app
 COPY ./app .
 
