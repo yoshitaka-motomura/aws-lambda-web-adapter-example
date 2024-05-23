@@ -82,8 +82,25 @@ const Home = () => {
             </p>
           </div>
         </div>
+        <div className="example my-14">
+          <h3 className="pb-6 text-left font-sans text-3xl font-bold">
+            Example
+          </h3>
+          <div className="flex">
+            <div className="image">
+              <img
+                src="/images/sample.jpg"
+                alt="example"
+                className="h-auto max-w-lg rounded-lg shadow-xl"
+              />
+            </div>
+            <div className="text px-6">
+              Image files can also be displayed without any problems.
+            </div>
+          </div>
+        </div>
         <hr className="mx-auto my-10 h-1 w-1/4 rounded border-0 bg-gray-300 dark:bg-gray-300" />
-        <div>
+        <div className="annotation">
           <header className="mb-8 py-8">
             <h2 className="font-sans text-6xl font-bold">Annotation</h2>
             <div className="text-lg text-gray-500">
