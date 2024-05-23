@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './src/**/*.tsx'
-  ],
+  content: ['./src/**/*.tsx'],
   theme: {
+    fontFamily: {
+      sans: 'Roboto, sans-serif',
+      poppins: 'Poppins, sans-serif',
+    },
     container: {
       center: true,
       padding: '1rem',
@@ -19,4 +21,3 @@ export default {
   },
   plugins: [],
 }
-
