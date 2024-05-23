@@ -33,17 +33,23 @@ export class LambdaWebAdapterExampleAppStack extends cdk.Stack {
       binaryMediaTypes: ["*/*"],
       restApiName: "OrionWebAdapterAPI",
     });
+
+    const certificateArn = process.env.CERTIFICATE_ARN;
+    if (!certificateArn) {
+      throw new Error("Certificate ARN is required");
+    }
     //acm
     const certificate = acm.Certificate.fromCertificateArn(
       this,
       "Certificate",
-      process.env.CERTIFICATE_ARN!
+      certificateArn
     );
 
     // domain name
     const apigwDomain = new apigateway.DomainName(this, "DomainName", {
       domainName: "orion.cristallum.io",
       certificate: certificate,
+      endpointType: apigateway.EndpointType.REGIONAL,
     });
 
     apigwDomain.addBasePathMapping(restApi);
