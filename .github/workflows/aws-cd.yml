@@ -40,4 +40,4 @@ jobs:
       - name: Cdk Deploy
         run: npm run cdk deploy
         env:
-          certificateArn: ${{ vars.CERTIFICATE_ARN }}
+          CERTIFICATE_ARN: ${{ vars.CERTIFICATE_ARN }}
