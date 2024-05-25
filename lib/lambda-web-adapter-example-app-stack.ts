@@ -12,7 +12,7 @@ export class LambdaWebAdapterExampleAppStack extends cdk.Stack {
     super(scope, id, props);
 
     /**
-     * Create a new Lambda function
+     * Create a new Lambda functiond
      *　Since we are using a web adapter, this is the only Lambda function we need.
      */
     const handler = new lambda.DockerImageFunction(
