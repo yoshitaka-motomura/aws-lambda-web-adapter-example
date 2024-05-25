@@ -1,13 +1,8 @@
 name: AWS CDK deployment
 on:
-  pull_request:
-    branches:
-      - main
   push:
-    branches:
-      - main
-    paths:
-      - "app/**"
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
   workflow_dispatch:
 permissions:
   id-token: write
